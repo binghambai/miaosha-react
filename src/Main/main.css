@@ -19,6 +19,22 @@
 
 .over {
     height: 530px;
+    background-color: #ded9d9;
+    overflow: auto;
+}
 
+.main-cart {
+    height: 600px;
+}
+
+#main-user {
+    height: 611px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #ded9d9;
+}
+
+
+.main-list {
     overflow: auto;
 }

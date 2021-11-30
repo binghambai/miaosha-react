@@ -25,6 +25,10 @@ export default class Body extends Component {
         }
     }
 
+    addCart = (item, e) => {
+        console.log("add " + item.name)
+    }
+
     render() {
 
         let list = this.state.goods
@@ -38,9 +42,11 @@ export default class Body extends Component {
 
                 <td>
                     <div className="container goods-item">
-                        <img className={require("../img/" + item.imgUrl + ".jpg").default}  alt="no img"/>
+                        <img className={require("../img/goods1.png").default}  alt="no img"/>
                         <p className="goods-name">{item.name} + {item.desc}</p>
-                        <p  className="goods-price">{item.price}<span className="glyphicon glyphicon-usd usd-color"></span></p>
+                        <p  className="goods-price"><span className="glyphicon glyphicon-usd usd-color"></span>{item.price}
+                        <span onClick={this.addCart.bind(this, item)} className="glyphicon glyphicon-shopping-cart cart"></span>
+                        </p>
 
                     </div>
                 </td>

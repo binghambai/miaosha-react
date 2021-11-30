@@ -7,15 +7,15 @@
 .foot-ur {
     display: flex;
     background-color: white;
-    margin-left: 10px;
+    margin-left: 30px;
     margin-top: 10px;
 }
 
 .foot-ur li {
     list-style-type: none;
-    width: 30px;
-    margin-left: 50px;
-    margin-right: 50px;
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .foot-ur button {

@@ -23,7 +23,7 @@
 .left {
     /*width: 600px;*/
     height:  152px;
-    background-color: white;
+    background-color: #ded9d9;
 }
 
 .bottom {
@@ -69,4 +69,14 @@
 }
 .table td {
     /*width: 100px;*/
+}
+
+.cart {
+    color: #1e5f08;
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+.cart:hover {
+    color: #79a843;
 }

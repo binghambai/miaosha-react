@@ -1,0 +1,27 @@
+.foot {
+    height: 40px;
+    border-radius: 6px;
+
+}
+
+.foot-ur {
+    display: flex;
+    background-color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.foot-ur li {
+    list-style-type: none;
+    width: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.foot-ur button {
+    background-color: white;
+    border: solid 0 #61dafb;
+}
+.icon-green {
+    color: limegreen;
+}

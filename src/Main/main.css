@@ -1,0 +1,24 @@
+
+.total {
+    /*overflow: auto;*/
+}
+
+.head {
+    height: 40px;
+    margin-top: 20px;
+}
+
+.list {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.context {
+    /*width: 600px;*/
+}
+
+.over {
+    height: 530px;
+
+    overflow: auto;
+}

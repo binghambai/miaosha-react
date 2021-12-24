@@ -5,28 +5,34 @@ import "./body.css"
 import Img1 from '../img/1.jpg'
 import Img2 from '../img/2.jpg'
 import Img3 from '../img/3.jpg'
+import axios from 'axios'
+
+const goodsReq = {
+    "pageNum" : 1,
+    "pageSize": 2,
+}
 export default class Body extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            goods: [
-                {"name":"商品1","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品2","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品3","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品4","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品5","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品6","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品7","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品8","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品9","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品10","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-                {"name":"商品11","desc":"a上的那上课了打卢克埃里克森吗打","price":"99.99",imgUrl:"1"},
-            ]
+            goods: []
         }
     }
 
+    componentDidMount() {
+        axios({url:"/api/goods/getAll", method: 'post', data: goodsReq}).then(resp => {
+            // console.log(resp.data.context.goodsDetailVOS)
+            this.setState({
+                goods: resp.data.context.goodsDetailVOS
+            })
+        }).catch(err =>{
+            console.log(err)
+        })
+
+    }
+
     addCart = (item, e) => {
-        console.log("add " + item.name)
+        console.log("add " + item)
     }
 
     render() {
@@ -42,7 +48,7 @@ export default class Body extends Component {
 
                 <td>
                     <div className="container goods-item">
-                        <img className={require("../img/goods1.png").default}  alt="no img"/>
+                        <img src={item.imgUrl} className="imgSize" alt="no img" mode='center'/>
                         <p className="goods-name">{item.name} + {item.desc}</p>
                         <p  className="goods-price"><span className="glyphicon glyphicon-usd usd-color"></span>{item.price}
                         <span onClick={this.addCart.bind(this, item)} className="glyphicon glyphicon-shopping-cart cart"></span>

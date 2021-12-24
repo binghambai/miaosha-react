@@ -13,6 +13,12 @@
     margin-left: 10px;
 }
 
+.imgSize {
+    padding: 2px;
+    width: 120px;
+    height: 140px;
+    text-align: center;
+}
 
 .img-class {
     width: 500px;
@@ -50,10 +56,10 @@
 
 .goods-item {
     /*width: 100px;*/
-    width: 120px;
+    width: 140px;
     padding: 0;
     background-color: white;
-    margin-left: 8px;
+    /*margin-left: 0px;*/
     margin-top: 8px;
     border-radius: 9px;
     z-index: 1;
@@ -73,7 +79,7 @@
 
 .cart {
     color: #1e5f08;
-    margin-left: 15px;
+    margin-left: 35px;
     font-size: 25px;
 }
 

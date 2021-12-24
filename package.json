@@ -41,6 +41,8 @@
     ]
   },
   "devDependencies": {
-    "file-loader": "^6.2.0"
+    "axios": "^0.21.1",
+    "file-loader": "^6.2.0",
+    "http-proxy-middleware": "^2.0.1"
   }
 }

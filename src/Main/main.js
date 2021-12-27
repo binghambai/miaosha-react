@@ -125,7 +125,7 @@ export default class Main extends Component {
                         return (
                             <div>
                                 <div className="container main-cart">
-                                    <div className="container list">
+                                    <div className="list">
                                         <div className="row">
                                             <Cart/>
                                         </div>

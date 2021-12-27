@@ -24,7 +24,11 @@
 }
 
 .main-cart {
-    height: 600px;
+    height: 611px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #ded9d9;
+    overflow: auto;
 }
 
 #main-user {

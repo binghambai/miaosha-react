@@ -6,8 +6,8 @@ import './main.css'
 import Head from "../Head/Head";
 import Body from "../Body/Body";
 import Foot from "../Foot/Foot";
-import {Img} from "react-image";
 import User from "../User/user";
+import localStorage from 'localStorage'
 import Cart from "../Cart/cart";
 
 export default class Main extends Component {
@@ -16,8 +16,22 @@ export default class Main extends Component {
         super(props);
         this.state = {
             page : "index",
-            img:[{"url":"../img/1.jpg"}]
+            img:[{"url":"../img/1.jpg"}],
+            isLogin: false,
+            currentUserInfo: {
+                'username':'',
+                'phone':'',
+                "pic":''
+            }
         }
+    }
+
+    componentWillMount(): void {
+        // if (localStorage.getItem('token')!=='' && localStorage.getItem('token')!==null) {
+        //     this.setState({
+        //         isLogin: true
+        //     })
+        // }
     }
 
     getChild = (r, msg) => {
@@ -26,9 +40,21 @@ export default class Main extends Component {
         })
     }
 
+    getLoginStatus = (r, isLogin) => {
+        this.setState({
+            isLogin: isLogin
+        })
+    }
 
+    getUserInfo = (r, userInfo) => {
+        console.log('get userinfo,' ,userInfo)
+        this.setState({
+            currentUserInfo: userInfo
+        })
+    }
 
     render() {
+        console.log('zhun bei,',this.state.currentUserInfo)
         const CommonHead = ()=> {
             return (<div className="container context">
                         <div className={"row"}>
@@ -68,7 +94,7 @@ export default class Main extends Component {
                             <div className="container" id="main-user">
                                 <div className="container main-list">
                                     <div className="row">
-                                        <User/>
+                                        <User parent={this} isLogin={this.state.isLogin} userInfo={this.state.currentUserInfo}/>
                                     </div>
                                 </div>
                             </div>
@@ -76,18 +102,36 @@ export default class Main extends Component {
                         </div>
                     )
                 case "cart":
-                    return (
-                        <div>
-                            <div className="container main-cart">
-                                <div className="container list">
-                                    <div className="row">
-                                        <Cart/>
+                    if (this.state.isLogin) {
+                        return (
+                            <div>
+                                <div className="container main-cart">
+                                    <div className="container list">
+                                        <div className="row">
+                                            <Cart/>
+                                        </div>
                                     </div>
                                 </div>
+                                <CommonFoot/>
                             </div>
-                            <CommonFoot/>
-                        </div>
-                    )
+                        )
+                    } else {
+                        this.setState({
+                            page: 'user'
+                        })
+                        return (
+                            <div className="user-back">
+                                <div className="container" id="main-user">
+                                    <div className="container main-list">
+                                        <div className="row">
+                                            <User parent={this} isLogin={this.state.isLogin}/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <CommonFoot/>
+                            </div>
+                        )
+                    }
             }
         }
 

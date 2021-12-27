@@ -9,6 +9,8 @@ import Foot from "../Foot/Foot";
 import User from "../User/user";
 import localStorage from 'localStorage'
 import Cart from "../Cart/cart";
+import axios from 'axios'
+
 
 export default class Main extends Component {
 
@@ -27,11 +29,30 @@ export default class Main extends Component {
     }
 
     componentWillMount(): void {
-        // if (localStorage.getItem('token')!=='' && localStorage.getItem('token')!==null) {
-        //     this.setState({
-        //         isLogin: true
-        //     })
-        // }
+        if (localStorage.getItem('token')!=='' && localStorage.getItem('token')!==null) {
+            console.log('token,', localStorage.getItem('token'))
+            axios.get('/api/token/verify?token=' + localStorage.getItem('token'))
+                .then((resp) => {
+                    if(resp.data === null) {
+                        console.log('token验证未通过')
+                        return
+                    }
+                    if (resp.data.code !== 'K-000000') {
+                        console.log('token验证未通过')
+                        return
+                    }
+                    this.setState({
+                        currentUserInfo: {
+                            'username':resp.data.context.userName,
+                            'phone':resp.data.context.userPhone,
+                            "pic":resp.data.context.userPic
+                        },
+                        isLogin: true,
+                    })
+                }).catch(err => {
+                    console.log(err)
+            })
+        }
     }
 
     getChild = (r, msg) => {
@@ -47,14 +68,12 @@ export default class Main extends Component {
     }
 
     getUserInfo = (r, userInfo) => {
-        console.log('get userinfo,' ,userInfo)
         this.setState({
             currentUserInfo: userInfo
         })
     }
 
     render() {
-        console.log('zhun bei,',this.state.currentUserInfo)
         const CommonHead = ()=> {
             return (<div className="container context">
                         <div className={"row"}>

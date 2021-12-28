@@ -24,13 +24,13 @@ export default class Main extends Component {
                 'username':'',
                 'phone':'',
                 "pic":''
-            }
+            },
+            goodsItemList: [],
         }
     }
 
     componentWillMount(): void {
         if (localStorage.getItem('token')!=='' && localStorage.getItem('token')!==null) {
-            console.log('token,', localStorage.getItem('token'))
             axios.get('/api/token/verify?token=' + localStorage.getItem('token'))
                 .then((resp) => {
                     if(resp.data === null) {
@@ -68,9 +68,19 @@ export default class Main extends Component {
     }
 
     getUserInfo = (r, userInfo) => {
+
         this.setState({
             currentUserInfo: userInfo
         })
+    }
+
+    getBodyGoods = (r, goods) => {
+        let tmpList = this.state.goodsItemList;
+        tmpList.push(goods);
+        this.setState({
+            goodsItemList: tmpList
+        })
+
     }
 
     render() {
@@ -100,7 +110,7 @@ export default class Main extends Component {
                             <div className="container over">
                                 <div className="container list">
                                     <div className="row">
-                                        <Body/>
+                                        <Body parent={this}/>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +137,7 @@ export default class Main extends Component {
                                 <div className="container main-cart">
                                     <div className="list">
                                         <div className="row">
-                                            <Cart/>
+                                            <Cart goodsItemList={this.state.goodsItemList}/>
                                         </div>
                                     </div>
                                 </div>

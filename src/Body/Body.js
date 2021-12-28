@@ -32,7 +32,8 @@ export default class Body extends Component {
     }
 
     addCart = (item, e) => {
-        console.log("add " + item)
+        this.props.parent.getBodyGoods(this, item)
+        alert('添加成功')
     }
 
     render() {

@@ -1,7 +1,9 @@
+import { Component } from "react";
+import Footer from "../../component/footer";
 
-import React,{Component} from "react";
 import "./cart.css"
-export default class Cart extends Component{
+
+export default class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,16 +22,11 @@ export default class Cart extends Component{
 
     }
 
-    componentDidMount(): void {
-
-    }
-
     manager(e) {
 
     }
 
     render() {
-        console.log(this.state.goodsItemList)
         return (
             <div className="back">
                 <div className='row row-name'>
@@ -52,7 +49,7 @@ export default class Cart extends Component{
                         </div>
                         <div className='row row-goods-dec'>
                             <div className='col-xs-3 goods-pic-item' id='goods-pic-width'>
-                                <img className='item-img' src={this.state.goodsItem.pic===''?require('../img/goods2.png').default:this.state.goodsItem.pic}/>
+                                <img className='item-img' src={this.state.goodsItem.pic===''?require('./img/goods2.png').default:this.state.goodsItem.pic}/>
                             </div>
                             <div className='col-xs-3 goods-dec-item' id='goods-dec-width'>
                                 <p className='item-name-p'>{this.state.goodsItem.name}</p>
@@ -89,8 +86,9 @@ export default class Cart extends Component{
 
                     </div>
                 </div>
+
+                <Footer />
             </div>
         );
     }
 }
-

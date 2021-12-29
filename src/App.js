@@ -1,10 +1,9 @@
-import './App.css';
-import Main from "./Main/main";
+import RouteConfig from './router';
 
 function App() {
   return (
     <div >
-        <Main/>
+        <RouteConfig />
     </div>
   );
 }

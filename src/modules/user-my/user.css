@@ -1,0 +1,176 @@
+.back {
+    /*background-color: #1e5f08;*/
+
+}
+
+.login-card {
+    height: 410px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+.login-card p {
+    margin-top: 20px;
+    margin-left: 35px;
+    color: red;
+    width: 300px;
+    height: 30px;
+}
+
+.logo-div {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.login-input {
+    display: flow;
+    margin-left: 35px;
+    margin-top: 40px;
+    width: 250px;
+}
+
+.login-input span{
+    background-color: white;
+}
+
+.login-btn {
+    text-align: center;
+    margin-top: 11px;
+    font-size: 30px;
+}
+
+.register {
+    margin-left: 20px;
+    color: #282c34;
+    font-size: 20px;
+}
+
+.login-register{
+    height: 570px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.register-btn-txt {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.r_login-btn {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 30px;
+}
+
+.r_errInfo {
+    width: 100px;
+    height: 20px;
+    color: red;
+    margin-top: 5px;
+    margin-left: 40px;
+    text-align: left;
+}
+
+.userinfo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 200px;
+    background-color: #ded9d9;
+}
+
+.dropdown {
+    width: 70px;
+    margin-left: 10px;
+}
+
+.icon-setting {
+    font-size: 25px;
+}
+
+.dropdown-menu {
+    width: 20px;
+}
+.dropdown-menu li a{
+    width: 20px;
+}
+
+.userList {
+    height: 380px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: -3px;
+    margin-bottom: 0px;
+}
+
+.row-css {
+    margin-top: 10px;
+    display: flow;
+}
+
+
+.userImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.user-name {
+    background-color: #ded9d9;
+    width: 100px;
+    height: 100px;
+    margin-left:-26px ;
+}
+
+.dianpu {
+    width: 259px;
+    margin-top: 10px;
+    margin-left: 37px;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 5px;;
+}
+
+.dianpu p {
+    width: 48px;
+    font-size: 8px;
+
+}
+
+.dianpu span {
+    font-size: 23px;
+    font-weight: 100
+}
+
+.dianpu button {
+    border: solid 0 white;
+    background-color: white;
+}
+
+.other {
+    margin-top: 20px;
+    margin-left: 40px;
+
+}
+
+.m-list {
+    margin-top: 20px;
+}
+
+.list-group-item {
+    align-content: center;
+}
+
+.list-group-item:hover {
+    background-color: #ded9d9;
+}

@@ -4,8 +4,9 @@ module.exports = function(app) {
     app.use(
         '/api',
         proxy.createProxyMiddleware({
-            // target: 'http://localhost:8090/api',
-            target: 'http://172.16.37.135:8090/api',
+            // target: 'http://172.16.77.30:8090/api',
+            target: 'http://localhost:8090/api',
+            // target: 'http://172.16.37.135:8090/api',
             // target: 'http://192.168.42.128:9000/api',
             changeOrigin: true,
             pathRewrite: {

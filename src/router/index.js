@@ -1,8 +1,8 @@
 // 配置路由
-
 import React, { Component } from "react";
 // 路由依赖
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+
 
 import Home from "../modules/home";
 import Cart from "../modules/cart";

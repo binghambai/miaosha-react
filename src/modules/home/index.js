@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Carousel } from "bootstrap";
 import axios from "axios";
 
 import './css/menu.css'
@@ -7,12 +8,15 @@ import "./css/body.css"
 
 import Footer from "../../component/footer";
 
+import {setGoodsItemList} from '../../store/action';
+import { connect } from "react-redux";
+
 const goodsReq = {
     "pageNum" : 1,
     "pageSize": 2,
 }
 
-export default class Home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +26,13 @@ export default class Home extends Component {
     }
 
     addCart = (item) => {
-
+        console.log("加入购物车");
+        console.log(item);
+        let {setGoodsItemList} = this.props;
+        // console.log(this.props);
+        // console.log(this.context.store);
+        // console.log(this.context);
+        setGoodsItemList(item);
     }
 
 
@@ -34,6 +44,7 @@ export default class Home extends Component {
             this.setState({
                 goods: resp.data.context.goodsDetailVOS
             })
+            console.log('加载商品数据');
         }).catch(err =>{
             console.log(err)
         })
@@ -41,6 +52,8 @@ export default class Home extends Component {
     }
 
     render() {
+
+
         let list = this.state.goods
         let htmlList = []
         for(let i =0; i< list.length; i +=2) {
@@ -69,17 +82,18 @@ export default class Home extends Component {
                         <Carousel className="img" autoPlay={"true"} infiniteLoop={"true"} width={"99%"}
                                   interval={"2000"} renderThumbs={(children: React.ReactChild[]) => []}>
                             <div>
-                                <img className={"img-class"} src={Img1}/>
+                                <img className={"img-class"} src={"../img/1.jpg"}/>
                             </div>
                             <div className={"img-class"}>
-                                <img className="car-img" src={Img2}/>
+                                <img className="car-img" src={"../img/2.jpg"}/>
                             </div>
                             <div className={"img-class"}>
-                                <img src={Img3}/>
+                                <img src={"../img/3.jpg"}/>
                             </div>
                         </Carousel>
                 </div> */}
                 {/* <HomeSwiper slideArr={slideArr} /> */}
+
                 <div className="container bottom">
                     <div className="row">
                         <table className="table" border="0">
@@ -96,4 +110,36 @@ export default class Home extends Component {
             </div>
         );
     }
+
 }
+  
+  const mapStateToProps = (state) => {
+    return {
+      goodsItemList: state.goodsItemList,
+    }
+  }
+
+  // mapDispatchToProps：将dispatch映射到组件的props中
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      setGoodsItemList (data) {
+          console.log("传递商品数据至购物车");
+          dispatch(setGoodsItemList(data))
+      }
+    //   setPageTitle (data) {
+    //       // 如果不懂这里的逻辑可查看前面对redux-thunk的介绍
+    //       dispatch(setPageTitle(data))
+    //       // 执行setPageTitle会返回一个函数
+    //       // 这正是redux-thunk的所用之处:异步action
+    //       // 上行代码相当于
+    //       /*dispatch((dispatch, getState) => {
+    //           dispatch({ type: 'SET_PAGE_TITLE', data: data })
+    //       )*/
+    //   },
+    //   setInfoList (data) {
+    //       dispatch(setInfoList(data))
+    //   }
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Home)

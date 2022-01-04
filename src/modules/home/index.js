@@ -27,7 +27,8 @@ class Home extends Component {
 
     addCart = (item) => {
         console.log("加入购物车");
-        console.log(item);
+        // console.log(item);
+        alert("添加成功")
         let {setGoodsItemList} = this.props;
         // console.log(this.props);
         // console.log(this.context.store);

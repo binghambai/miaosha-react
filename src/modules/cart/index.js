@@ -57,7 +57,7 @@ class Cart extends Component {
                 </div>
                 <div className='row row-goods-dec'>
                     <div className='col-xs-3 goods-pic-item' id='goods-pic-width'>
-                        <img className='item-img' src={item.pic===''?require('./img/goods2.png').default:this.state.goodsItem.pic}/>
+                        <img className='item-img' src={item.imgUrl===''?require('./img/goods2.png').default:item.imgUrl}/>
                     </div>
                     <div className='col-xs-3 goods-dec-item' id='goods-dec-width'>
                         <p className='item-name-p'>{item.name}</p>

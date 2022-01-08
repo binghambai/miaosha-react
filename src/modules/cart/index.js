@@ -5,6 +5,7 @@ import "./cart.css"
 
 import { setInfoList } from "../../store/action";
 import { connect } from "react-redux";
+import axios from "axios";
 
 class Cart extends Component {
     constructor(props) {
@@ -19,13 +20,30 @@ class Cart extends Component {
                 storeName:'店铺名',
                 total:1  //购买个数
             },
-            sumMoney: '22.66'
+            sumMoney: '0.00'
         }
 
     }
 
     componentDidMount(){
-        
+        let token = localStorage.getItem('token')
+        if (token ==='' || token === null) {
+            this.props.history.push('/login')
+        }
+        axios({url:'/api/token/verify?token='+token, method:'get'}).then(resp => {
+            if (resp.data.code !== 'K-000000') {
+                localStorage.clear()
+                alert('登录过期重新登录')
+                this.props.history.push('/login')
+                return
+            }
+            localStorage.setItem('userName',resp.data.context.userName)
+            localStorage.setItem('userPhone',resp.data.context.userPhone)
+            localStorage.setItem('userId',resp.data.context.userId)
+            localStorage.setItem('userPic',resp.data.context.userPic)
+        }).catch(e => {
+            console.log(e)
+        })
     }
 
     manager(e) {
@@ -35,12 +53,8 @@ class Cart extends Component {
 
     render() {
         let {goodsItemList} = this.props
-        console.log(this.state);
-        console.log(typeof goodsItemList)
-        console.log(goodsItemList)
         let htmlList = [];
         htmlList.push(goodsItemList.map(item => {
-            console.log(item);
             return (
                 <div className='container cart-item' id='cart-item-padding'>
                 <div className='row store-name'>
@@ -77,7 +91,6 @@ class Cart extends Component {
             </div>
             )
         }))
-        console.log(htmlList);
         return (
             <div className="back">
                 <div className='row row-name'>
@@ -142,8 +155,8 @@ class Cart extends Component {
     //   setInfoList (data) {
     //       dispatch(setInfoList(data))
     //   }
-        
+
     }
   }
-  
+
   export default connect(mapStateToProps, mapDispatchToProps)(Cart)

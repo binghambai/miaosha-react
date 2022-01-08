@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Carousel } from "bootstrap";
+// import { Carousel } from "bootstrap";
 import axios from "axios";
 
 import './css/menu.css'
@@ -37,7 +37,7 @@ class Home extends Component {
     }
 
 
-    
+
 
     componentDidMount() {
         axios({url:"/api/goods/getAll", method: 'post', data: goodsReq}).then(resp => {
@@ -113,7 +113,7 @@ class Home extends Component {
     }
 
 }
-  
+
   const mapStateToProps = (state) => {
     return {
       goodsItemList: state.goodsItemList,
@@ -142,5 +142,5 @@ class Home extends Component {
     //   }
     }
   }
-  
+
   export default connect(mapStateToProps, mapDispatchToProps)(Home)

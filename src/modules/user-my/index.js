@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Footer from "../../component/footer";
 import "./user.css"
+import axios from "axios";
 
 export default class My extends Component {
 
@@ -22,13 +23,36 @@ export default class My extends Component {
             r_username: '',
             r_password: '',
             r_phone:'',
-            r_needInput:''
+            r_needInput:'',
+
 
         }
     }
 
+    componentDidMount() {
+        let token = localStorage.getItem('token')
+        if (token ==='' || token === null) {
+            this.props.history.push('/login')
+        }
+        axios({url:'/api/token/verify?token='+token, method:'get'}).then(resp => {
+            if (resp.data.code !== 'K-000000') {
+                localStorage.clear()
+                alert('登录过期重新登录')
+                this.props.history.push('/login')
+                return
+            }
+            localStorage.setItem('userName',resp.data.context.userName)
+            localStorage.setItem('userPhone',resp.data.context.userPhone)
+            localStorage.setItem('userId',resp.data.context.userId)
+            localStorage.setItem('userPic',resp.data.context.userPic)
+        }).catch(e => {
+            console.log(e)
+        })
+    }
+
     logout = (event) => {
-        console.log(event);
+        localStorage.clear()
+        this.props.history.push('/login')
     }
 
     render() {
@@ -41,13 +65,13 @@ export default class My extends Component {
                                 <img className="userImg" alt="no"  src={require('./img/no-user.png').default}/>
                             </div>
                             <div className="col-md-3 col-xs-4 user-name">
-                                <h4 className="str-name">xxxx</h4>
-                                <h5 className="str-phone">xxxx</h5>
+                                <h4 className="str-name">{localStorage.getItem('userName')}</h4>
+                                <h5 className="str-phone">{localStorage.getItem('userPhone')}</h5>
                             </div>
                             <div className="col-md-2 col-xs-2 " id='setting'>
                                 <div className="dropdown">
-                                    <span className='glyphicon glyphicon-cog icon-setting
-                                    ' data-toggle='dropdown'/>
+                                        <span className='glyphicon glyphicon-cog icon-setting
+                                        ' data-toggle='dropdown'/>
                                     <span className="caret"></span>
                                     <ul className="dropdown-menu">
                                         <li><a href="#">设置</a></li>

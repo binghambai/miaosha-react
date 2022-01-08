@@ -44,6 +44,19 @@ class Cart extends Component {
         }).catch(e => {
             console.log(e)
         })
+        let getList = {
+            'userId': localStorage.getItem('userId')
+        }
+        axios({url:'/api/cart/getCartList', method:'post', data: getList}).then(resp => {
+            if (resp.data.code !== 'K-000000') {
+                this.setState({
+                    sum : 0
+                })
+                alert(resp.data.msg)
+                return
+            }
+            console.log(resp.data.context)
+        })
     }
 
     manager(e) {

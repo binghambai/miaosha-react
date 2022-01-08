@@ -26,8 +26,43 @@ class Home extends Component {
     }
 
     addCart = (item) => {
-        console.log("加入购物车");
-        // console.log(item);
+        let token = localStorage.getItem('token')
+        if (token ==='' || token === null) {
+            this.props.history.push('/login')
+        }
+        axios({url:'/api/token/verify?token='+token, method:'get'}).then(resp => {
+            if (resp.data.code !== 'K-000000') {
+                localStorage.clear()
+                alert('登录过期重新登录')
+                this.props.history.push('/login')
+                return
+            }
+            localStorage.setItem('userName',resp.data.context.userName)
+            localStorage.setItem('userPhone',resp.data.context.userPhone)
+            localStorage.setItem('userId',resp.data.context.userId)
+            localStorage.setItem('userPic',resp.data.context.userPic)
+        }).catch(e => {
+            console.log(e)
+        })
+        console.log(item);
+        let addCart = {
+            'goodsId':item.goodsId,
+            'userId': localStorage.getItem('userId'),
+            'goodsName': item.name,
+            'goodsPic': item.imgUrl,
+            'goodsDesc': item.desc,
+            'goodsPrice':item.price,
+            'num':1,
+        }
+        axios({url:'/api/cart/add', method:'post', data: addCart}).then(resp => {
+            console.log(resp.data)
+            if (resp.data.code !== 'K-000000') {
+                alert('添加失败,' + resp.data.msg)
+                return
+            }
+        }).catch(e => {
+            console.log(e)
+        })
         alert("添加成功")
         let {setGoodsItemList} = this.props;
         // console.log(this.props);
